@@ -4,7 +4,7 @@ from vertexai.preview import generative_models
 from vertexai.preview.generative_models import GenerativeModel, Tool, Part, Content, ChatSession
 from services.flight_manager import search_flights
 
-project = "sample-gemini"
+project = "gemini-flights-mission-430419"
 vertexai.init(project = project)
 
 # Define Tool
@@ -48,6 +48,8 @@ model = GenerativeModel(
     tools = [search_tool],
     generation_config = config
 )
+
+
 
 # helper function to unpack responses
 def handle_response(response):

@@ -6,6 +6,9 @@ from typing import Optional
 from fastapi import Depends, HTTPException
 from sqlalchemy import and_, func
 from sqlalchemy.orm import Session
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 from models import Flight, FlightModel, FlightSearchCriteria, get_db
 import logging
 
@@ -282,6 +285,20 @@ def search_flights(**params):
 
     # Making the GET request
     response = requests.get(url, headers={'accept': 'application/json'})
+
+    # Returning the JSON response
+    return response.json()
+
+
+def book_flight(flight_id, seat_type, num_seats):
+
+    url = f"http://127.0.0.1:8000/book_flight?flight_id={int(flight_id)}&seat_type={seat_type}"
+    # Adding optional parameters to the URL
+    if num_seats:
+        url += f"&num_seats={int(num_seats)}"
+
+    # Making the POST request
+    response = requests.post(url, headers={'accept': 'application/json'})
 
     # Returning the JSON response
     return response.json()

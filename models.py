@@ -61,6 +61,8 @@ class FlightSearchCriteria(BaseModel):
     origin: str
     destination: str
     departure_date: date
+    #max_cost: int
+    #seat_type: str
     arrival_date: Optional[str] = None
     flight_number: Optional[str] = None
     airline: Optional[str] = None
@@ -69,6 +71,7 @@ class FlightSearchCriteria(BaseModel):
     seat_type: Optional[str] = None  # 'economy', 'business', 'first_class'
     min_cost: Optional[int] = None
     max_cost: Optional[int] = None
+
     
 
 # Create the database
